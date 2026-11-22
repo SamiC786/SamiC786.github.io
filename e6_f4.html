@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réalisation — VLAN sur Cisco Packet Tracer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li class="has-sub">
+                    <a href="presentation.html">Profil</a>
+                    <ul>
+                        <li><a href="presentation.html">Présentation</a></li>
+                        <li><a href="loisir.html">Loisirs</a></li>
+                    </ul>
+                </li>
+                <li class="has-sub">
+                    <a href="experience_pro.html" aria-current="page">Parcours</a>
+                    <ul>
+                        <li><a href="experience_pro.html">Expériences professionnelles</a></li>
+                        <li><a href="rapport_stage.html">Rapports de stage</a></li>
+                        <li><a href="realisations.html">Toutes mes réalisations</a></li>
+                    </ul>
+                </li>
+                <li class="has-sub">
+                    <a href="diplome.html">Formation</a>
+                    <ul>
+                        <li><a href="diplome.html">Diplômes</a></li>
+                        <li><a href="competences.html">Compétences</a></li>
+                        <li><a href="scolarite.html">Scolarité</a></li>
+                    </ul>
+                </li>
+                <li class="has-sub">
+                    <a href="e5.html">E5</a>
+                    <ul>
+                        <li><a href="e5_r1.html">Réalisation 1 — Backend Python</a></li>
+                        <li><a href="e5_r2.html">Réalisation 2 — Frontend Angular</a></li>
+                        <li><a href="e5_r3.html">Réalisation 3 — Migration C#</a></li>
+                        <li><a href="e5_1.html">Présentation entreprise</a></li>
+                        <li><a href="e5_2.html">Tableau de synthèse</a></li>
+                        <li><a href="e5_3.html">Attestation</a></li>
+                    </ul>
+                </li>
+                <li><a href="e6.html">E6</a></li>
+                <li><a href="veille.html">Veille</a></li>
+                <li><a href="CV_Castignetti_Sami.pdf" target="_blank">CV</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="content">
+        <div class="breadcrumb"><a href="realisations.html">Réalisations</a> &rsaquo; <a href="realisations.html#formation">Formation</a> &rsaquo; VLAN Cisco Packet Tracer</div>
+        <h1>Mise en place de VLAN sur Cisco Packet Tracer</h1>
+        <span class="badge">Réalisation en formation — F04</span>
+
+        <div class="grid">
+            <div class="card full">
+                <h2>Contexte</h2>
+                <p>Dans le cadre des travaux pratiques réseau du BTS SIO, j'ai utilisé Cisco Packet Tracer pour simuler la configuration de VLANs (Virtual Local Area Networks). Les VLANs permettent de segmenter un réseau physique en plusieurs réseaux logiques distincts, améliorant la sécurité et les performances de l'infrastructure.</p>
+            </div>
+
+            <div class="card">
+                <h2>Objectifs</h2>
+                <ul>
+                    <li>Comprendre le concept de segmentation réseau par VLAN</li>
+                    <li>Configurer des VLANs sur des switches Cisco</li>
+                    <li>Associer des ports aux VLANs (access ports)</li>
+                    <li>Configurer les ports trunk entre les switches</li>
+                    <li>Tester l'isolation et la communication inter-VLAN</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>Technologies utilisées</h2>
+                <div style="margin-top:4px">
+                    <span class="tag">Cisco Packet Tracer</span>
+                    <span class="tag">VLAN</span>
+                    <span class="tag">Switch Cisco</span>
+                    <span class="tag">IOS CLI</span>
+                </div>
+                <p style="margin-top:12px">Simulation réalisée entièrement dans Cisco Packet Tracer avec des équipements Cisco virtuels.</p>
+            </div>
+
+            <div class="card">
+                <h2>Notions abordées</h2>
+                <ul>
+                    <li>Définition et création de VLANs (VLAN ID, nom)</li>
+                    <li>Modes de port : Access et Trunk</li>
+                    <li>Protocole 802.1Q (encapsulation VLAN)</li>
+                    <li>Routage inter-VLAN (router-on-a-stick)</li>
+                    <li>Commandes IOS : <code style="color:#00bfff">vlan</code>, <code style="color:#00bfff">switchport</code>, <code style="color:#00bfff">trunk</code></li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>Réalisations</h2>
+                <ul>
+                    <li>Conception d'une topologie réseau avec plusieurs VLANs</li>
+                    <li>Création et nommage des VLANs (ex. VLAN 10 : RH, VLAN 20 : IT)</li>
+                    <li>Configuration des ports access et trunk</li>
+                    <li>Tests de communication : isolement entre VLANs vérifié</li>
+                    <li>Mise en place du routage inter-VLAN via un routeur</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>Compétences acquises</h2>
+                <ul>
+                    <li>Maîtrise des bases de l'administration réseau Cisco</li>
+                    <li>Compréhension de la segmentation réseau logique</li>
+                    <li>Utilisation de la CLI Cisco IOS</li>
+                    <li>Lecture et interprétation de topologies réseau</li>
+                    <li>Dépannage de configurations réseau</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card full" style="margin-top: 16px;">
+            <h2>Topologie réseau — TP Cisco Packet Tracer</h2>
+            <img src="vlan-topologie.png" alt="Topologie réseau VLAN — Cisco Packet Tracer" style="width: 100%; border-radius: 10px; margin-top: 10px; display: block;">
+        </div>
+
+        <a href="realisations.html#formation" class="back-link">&larr; Retour aux réalisations</a>
+    </div>
+</body>
+</html>

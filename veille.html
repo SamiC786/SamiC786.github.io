@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veille Technologique — La MFA et ses contournements</title>
+    <meta name="description" content="Veille technologique BTS SIO SISR : la MFA et ses contournements (MFA fatigue, SIM swapping, vol de cookies de session), analyse et moyens de protection.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <a class="mfa-skip-link" href="#mfa-main">Aller au contenu principal</a>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li class="has-sub">
+                    <a href="presentation.html">Profil</a>
+                    <ul>
+                        <li><a href="presentation.html">Présentation</a></li>
+                        <li><a href="loisir.html">Loisirs</a></li>
+                    </ul>
+                </li>
+                <li class="has-sub">
+                    <a href="experience_pro.html">Parcours</a>
+                    <ul>
+                        <li><a href="experience_pro.html">Expériences professionnelles</a></li>
+                        <li><a href="rapport_stage.html">Rapports de stage</a></li>
+                        <li><a href="realisations.html">Toutes mes réalisations</a></li>
+                    </ul>
+                </li>
+                <li class="has-sub">
+                    <a href="diplome.html">Formation</a>
+                    <ul>
+                        <li><a href="diplome.html">Diplômes</a></li>
+                        <li><a href="competences.html">Compétences</a></li>
+                        <li><a href="scolarite.html">Scolarité</a></li>
+                    </ul>
+                </li>
+                <li class="has-sub">
+                    <a href="e5.html">E5</a>
+                    <ul>
+                        <li><a href="e5_r1.html">Réalisation 1 — Backend Python</a></li>
+                        <li><a href="e5_r2.html">Réalisation 2 — Frontend Angular</a></li>
+                        <li><a href="e5_r3.html">Réalisation 3 — Migration C#</a></li>
+                        <li><a href="e5_1.html">Présentation entreprise</a></li>
+                        <li><a href="e5_2.html">Tableau de synthèse</a></li>
+                        <li><a href="e5_3.html">Attestation</a></li>
+                    </ul>
+                </li>
+                <li><a href="e6.html">E6</a></li>
+                <li><a href="veille.html" aria-current="page">Veille</a></li>
+                <li><a href="CV_Castignetti_Sami.pdf" target="_blank">CV</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="veille-section">
+        <div class="breadcrumb">
+            <a href="index.html">Accueil</a>
+            <span aria-hidden="true">/</span>
+            <span>Veille technologique</span>
+        </div>
+
+        <!-- Tout le contenu interactif est scopé dans .mfa-wrap : thème, JS et CSS
+             dédiés ne touchent aucune autre page du portfolio. -->
+        <div class="mfa-wrap" id="mfa-wrap" data-mfa-theme="dark">
+
+            <div class="mfa-pagebar">
+                <span class="badge">Veille technologique · BTS SIO SISR</span>
+                <div class="mfa-pagebar-actions">
+                    <span class="mfa-updated">Dernière mise à jour : <time id="mfa-last-updated" datetime="2026-11-17">17 novembre 2026</time></span>
+                    <button type="button" class="mfa-btn" id="mfa-theme-toggle" aria-pressed="false">
+                        <span class="mfa-btn-dot" aria-hidden="true"></span>
+                        <span class="mfa-theme-label">Thème clair</span>
+                    </button>
+                    <button type="button" class="mfa-btn" id="mfa-print-btn">Imprimer / PDF</button>
+                </div>
+            </div>
+
+            <h1>La MFA et ses contournements</h1>
+            <p class="subtitle">MFA fatigue, SIM swapping, vol de cookies de session — comment l'authentification multifacteur est attaquée aujourd'hui, et comment un technicien SISR s'en protège.</p>
+
+            <!-- Bandeau de chiffres clés, compteurs animés au scroll -->
+            <div class="mfa-stats" aria-label="Trois chiffres clés de cette veille">
+                <div class="mfa-stat">
+                    <span class="mfa-stat-num" data-target="1.8" data-decimals="1" data-suffix=" Md">0</span>
+                    <span class="mfa-stat-label">identifiants volés par des infostealers au 1<sup>er</sup> semestre 2025, soit +800&nbsp;%</span>
+                </div>
+                <div class="mfa-stat">
+                    <span class="mfa-stat-num" data-target="30" data-suffix=" min">0</span>
+                    <span class="mfa-stat-label">suffisent pour vider un compte bancaire après un SIM swapping réussi</span>
+                </div>
+                <div class="mfa-stat">
+                    <span class="mfa-stat-num" data-target="300" data-suffix=" M£">0</span>
+                    <span class="mfa-stat-label">de pertes estimées pour Marks &amp; Spencer après l'attaque de son help desk</span>
+                </div>
+            </div>
+
+            <div class="mfa-layout">
+                <nav class="mfa-toc" aria-label="Sommaire de la page">
+                    <p class="mfa-toc-title">Sommaire</p>
+                    <ul>
+                        <li><a href="#definitions">Définitions</a></li>
+                        <li><a href="#problematique">Problématique</a></li>
+                        <li><a href="#methode">Méthode &amp; outils</a></li>
+                        <li><a href="#analyse">Analyse</a></li>
+                        <li><a href="#exemples">Exemples récents</a></li>
+                        <li><a href="#protection">Se protéger</a></li>
+                        <li><a href="#bts">Synthèse &amp; bilan</a></li>
+                        <li><a href="#sources">Sources</a></li>
+                    </ul>
+                </nav>
+
+                <div class="mfa-main" id="mfa-main">
+
+                    <!-- ============================================================
+                         1. DÉFINITIONS
+                         ============================================================ -->
+                    <section id="definitions" class="mfa-section mfa-fade">
+                        <h2 class="section-title">01 · Définitions essentielles</h2>
+                        <div class="grid">
+                            <div class="card">
+                                <h2>Veille technologique</h2>
+                                <p>Surveillance continue et organisée des évolutions d'un domaine, pour anticiper les menaces et adapter ses pratiques.</p>
+                            </div>
+                            <div class="card">
+                                <h2>Authentification</h2>
+                                <p>Action de prouver son identité à un système avant d'y accéder.</p>
+                            </div>
+                            <div class="card">
+                                <h2>Facteur d'authentification</h2>
+                                <p>Ce que je sais (mot de passe, PIN), ce que je possède (téléphone, clé), ce que je suis (empreinte, visage).</p>
+                            </div>
+                            <div class="card">
+                                <h2>MFA</h2>
+                                <p>Combinaison d'au moins deux facteurs de types différents. Un mot de passe volé seul ne suffit plus à se connecter.</p>
+                            </div>
+                            <div class="card">
+                                <h2>OTP</h2>
+                                <p>Code à usage unique (<code>One-Time Password</code>), reçu par SMS ou généré par une application comme Google ou Microsoft Authenticator.</p>
+                            </div>
+                            <div class="card">
+                                <h2>Notification push</h2>
+                                <p>Demande « Approuver / Refuser » envoyée directement sur le smartphone de l'utilisateur.</p>
+                            </div>
+                            <div class="card">
+                                <h2>Cookie de session</h2>
+                                <p>Une fois connecté, le site dépose un cookie qui prouve que l'authentification — MFA comprise — a déjà été effectuée.</p>
+                            </div>
+                            <div class="card">
+                                <h2>FIDO2 / passkey</h2>
+                                <p>Clé cryptographique liée au site <em>et</em> à l'appareil, ce qui la rend résistante au phishing.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ============================================================
+                         2. PROBLÉMATIQUE
+                         ============================================================ -->
+                    <section id="problematique" class="mfa-section mfa-fade">
+                        <h2 class="section-title">02 · Problématique</h2>
+                        <div class="card full mfa-problem">
+                            <blockquote>La MFA est-elle encore suffisante face aux attaquants, et comment un technicien SISR doit-il la déployer pour qu'elle résiste à leurs contournements ?</blockquote>
+                            <p>La MFA est la mesure n°1 recommandée par l'ANSSI et la CNIL pour sécuriser les accès. Les attaquants ne cherchent donc plus à casser le mot de passe seul : ils visent le second facteur, ou ce qui se passe <em>juste après</em> la connexion. Trois techniques dominent aujourd'hui : la MFA fatigue, le SIM swapping et le vol de cookies de session.</p>
+                            <p><strong>Lien avec le BTS SIO SISR :</strong> cette problématique touche directement la sécurisation des accès (Active Directory, Microsoft Entra ID, VPN) et l'épreuve E7 « Cybersécurité des services informatiques ».</p>
+                        </div>
+                    </section>
+
+                    <!-- ============================================================
+                         3. MÉTHODE ET OUTILS DE VEILLE
+                         ============================================================ -->
+                    <section id="methode" class="mfa-section mfa-fade">
+                        <h2 class="section-title">03 · Méthode et outils de veille</h2>
+                        <div class="grid">
+                            <div class="card full">
+                                <h2>Google Alertes</h2>
+                                <p>Mots-clés suivis : « MFA fatigue », « contournement MFA », « SIM swapping », « vol de cookies de session », « infostealer ».</p>
+                                <p>Fréquence hebdomadaire, sources « Actualités + Blogs », toutes langues (surtout français et anglais), envoi par e-mail.</p>
+                                <img src="assets/img/google-alertes-liste.png" alt="Capture de Google Alertes : les 5 alertes de la veille (contournement MFA, MFA fatigue, SIM swapping, vol de cookies de session, infostealer)" class="mfa-capture" width="1456" height="820" loading="lazy">
+                                <p class="mfa-capture-caption">Mes 5 alertes Google Alertes.</p>
+                                <img src="assets/img/google-alertes-reglages.png" alt="Capture des réglages d'une alerte : une fois par semaine, sources Actualités et Blogs, toutes les langues" class="mfa-capture" width="1456" height="820" loading="lazy">
+                                <p class="mfa-capture-caption">Réglages d'une alerte : une fois par semaine, Actualités + Blogs, toutes langues.</p>
+                            </div>
+                        </div>
+
+                        <div class="card full" style="margin-top:16px;">
+                            <h2>Sources suivies</h2>
+                            <div class="tech">
+                                <span class="tag">ANSSI / CERT-FR</span>
+                                <span class="tag">cybermalveillance.gouv.fr</span>
+                                <span class="tag">CNIL</span>
+                                <span class="tag">CISA</span>
+                                <span class="tag">IT-Connect</span>
+                                <span class="tag">LeMagIT</span>
+                                <span class="tag">Le Monde Informatique</span>
+                                <span class="tag">Zataz</span>
+                                <span class="tag">BleepingComputer</span>
+                                <span class="tag">The Hacker News</span>
+                                <span class="tag">Blog Microsoft</span>
+                                <span class="tag">Blog Google</span>
+                                <span class="tag">Blog Sophos</span>
+                                <span class="tag">Blog Varonis</span>
+                            </div>
+                            <p style="margin-top:14px;">Je consulte ces sites directement, en complément des alertes, au moins une fois par semaine.</p>
+                            <p><strong>Méthode :</strong> tri hebdomadaire des résultats. Je ne garde que ce qui apporte un fait nouveau, que je résume en deux ou trois lignes et que je classe par technique (MFA fatigue, SIM swapping, vol de cookies).</p>
+                        </div>
+                    </section>
+
+                    <!-- ============================================================
+                         4. ANALYSE DES CONTOURNEMENTS
+                         ============================================================ -->
+                    <section id="analyse" class="mfa-section mfa-fade">
+                        <h2 class="section-title">04 · Analyse des contournements</h2>
+                        <p class="mfa-keyidea">Idée clé : aucune de ces attaques ne casse la cryptographie de la MFA. Elles exploitent l'humain, l'opérateur téléphonique, ou la session déjà ouverte.</p>
+
+                        <div class="table-wrap">
+                            <table>
+                                <caption class="mfa-schema-sub" style="text-align:left;padding:10px 20px 0;">Tableau comparatif des trois techniques</caption>
+                                <thead>
+                                    <tr>
+                                        <th scope="col"></th>
+                                        <th scope="col">MFA fatigue</th>
+                                        <th scope="col">SIM swapping</th>
+                                        <th scope="col">Vol de cookies</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Aussi appelé</td>
+                                        <td>Push bombing</td>
+                                        <td>SIM jacking</td>
+                                        <td>Session hijacking, pass-the-cookie</td>
+                                    </tr>
+                                    <tr>
+                                        <td>MFA visée</td>
+                                        <td>Notifications push</td>
+                                        <td>Codes par SMS ou appel</td>
+                                        <td>Toutes, même les plus solides</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Prérequis</td>
+                                        <td>Avoir le mot de passe</td>
+                                        <td>Infos personnelles sur la victime</td>
+                                        <td>Malware sur le poste ou faux site relais</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ce qu'on exploite</td>
+                                        <td>Lassitude et urgence</td>
+                                        <td>Procédure de l'opérateur</td>
+                                        <td>Le cookie post-MFA</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Signe d'alerte</td>
+                                        <td>Rafale de notifications</td>
+                                        <td>Perte soudaine de réseau</td>
+                                        <td>Souvent aucun</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Schéma 1 : MFA fatigue -->
+                        <p class="mfa-schema-title">Schéma — MFA fatigue (push bombing)</p>
+                        <ol class="mfa-schema">
+                            <li>
+                                <span class="mfa-step-num" aria-hidden="true">1</span>
+                                <div class="mfa-step-body"><strong>Mot de passe volé</strong><p>L'attaquant possède déjà l'identifiant et le mot de passe de la victime.</p></div>
+                            </li>
+                            <li>
+                                <span class="mfa-step-num" aria-hidden="true">2</span>
+                                <div class="mfa-step-body"><strong>Connexions en boucle</strong><p>Il tente de se connecter en boucle, déclenchant des dizaines de notifications, souvent la nuit.</p></div>
+                            </li>
+                            <li>
+                                <span class="mfa-step-num" aria-hidden="true">3</span>
+                                <div class="mfa-step-body"><strong>Faux appel du « support »</strong><p>Un complice appelle la victime en se faisant passer pour le support, pour la pousser à valider.</p></div>
+                            </li>
+                            <li>
+                                <span class="mfa-step-num" aria-hidden="true">4</span>
+                                <div class="mfa-step-body"><strong>Validation par lassitude</strong><p>La victime approuve une notification pour que ça s'arrête : l'attaquant est connecté.</p></div>
+                            </li>
+                        </ol>
+
+                        <!-- Schéma 2 : SIM swapping -->
+                        <p class="mfa-schema-title">Schéma — SIM swapping</p>
+                        <ol class="mfa-schema">
+                            <li>
+                                <span class="mfa-step-num" aria-hidden="true">1</span>
+                                <div class="mfa-step-body"><strong>Collecte d'informations</strong><p>Nom, date de naissance, adresse... récupérés via réseaux sociaux ou fuites de données.</p></div>
+                            </li>
+                            <li>
+                                <span class="mfa-step-num" aria-hidden="true">2</span>
+                                <div class="mfa-step-body"><strong>Usurpation auprès de l'opérateur</strong><p>L'attaquant se fait passer pour la victime auprès de l'opérateur téléphonique, parfois avec un complice interne.</p></div>
+                            </li>
+                            <li>
+                                <span class="mfa-step-num" aria-hidden="true">3</span>
+                                <div class="mfa-step-body"><strong>Bascule du numéro</strong><p>Le numéro bascule sur une carte SIM contrôlée par l'attaquant ; la victime perd le réseau.</p></div>
+                            </li>
+                            <li>
+                                <span class="mfa-step-num" aria-hidden="true">4</span>
+                                <div class="mfa-step-body"><strong>Réception des codes</strong><p>L'attaquant reçoit les SMS de code et réinitialise les comptes de la victime.</p></div>
+                            </li>
+                        </ol>
+
+                        <!-- Schéma 3 : Vol de cookies, deux voies -->
+                        <p class="mfa-schema-title">Schéma — Vol de cookies de session (deux voies possibles)</p>
+                        <div class="mfa-branch-wrap">
+                            <div>
+                                <span class="mfa-branch-label">Voie A — Infostealer</span>
+                                <ol class="mfa-schema">
+                                    <li>
+                                        <span class="mfa-step-num" aria-hidden="true">1</span>
+                                        <div class="mfa-step-body"><strong>Infection du poste</strong><p>Logiciel piraté ou pièce jointe installe un infostealer (Lumma, RedLine, Vidar...).</p></div>
+                                    </li>
+                                    <li>
+                                        <span class="mfa-step-num" aria-hidden="true">2</span>
+                                        <div class="mfa-step-body"><strong>Revente sur le dark web</strong><p>Les cookies de session volés sont revendus sur des marchés clandestins.</p></div>
+                                    </li>
+                                </ol>
+                            </div>
+                            <div>
+                                <span class="mfa-branch-label">Voie B — Adversary-in-the-Middle</span>
+                                <ol class="mfa-schema">
+                                    <li>
+                                        <span class="mfa-step-num" aria-hidden="true">1</span>
+                                        <div class="mfa-step-body"><strong>Faux site relais</strong><p>La victime arrive sur un site relais type Evilginx qui imite le vrai site.</p></div>
+                                    </li>
+                                    <li>
+                                        <span class="mfa-step-num" aria-hidden="true">2</span>
+                                        <div class="mfa-step-body"><strong>La victime fait sa MFA</strong><p>Le relais capture le cookie émis juste après une MFA pourtant réussie.</p></div>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                        <div class="mfa-branch-final">
+                            <ol class="mfa-schema">
+                                <li>
+                                    <span class="mfa-step-num" aria-hidden="true">3</span>
+                                    <div class="mfa-step-body"><strong>Import du cookie</strong><p>L'attaquant importe le cookie dans son propre navigateur : il est connecté sans mot de passe ni MFA.</p></div>
+                                </li>
+                            </ol>
+                        </div>
+
+                        <!-- Variante bonus : help desk -->
+                        <p class="mfa-schema-title">Variante bonus — Attaque du help desk (Scattered Spider)</p>
+                        <div class="card">
+                            <p>L'attaquant appelle le support informatique en se faisant passer pour un salarié (parfois identifié au préalable sur LinkedIn), et demande la réinitialisation du mot de passe <strong>et</strong> de la MFA sur un nouveau téléphone. Si le support ne vérifie pas réellement l'identité de l'appelant, l'attaquant obtient un accès complet sans jamais affronter la MFA d'origine.</p>
+                        </div>
+                    </section>
+
+                    <!-- ============================================================
+                         5. EXEMPLES RÉCENTS — FRISE CHRONOLOGIQUE FILTRABLE
+                         ============================================================ -->
+                    <section id="exemples" class="mfa-section mfa-fade">
+                        <h2 class="section-title">05 · Exemples récents</h2>
+                        <p class="subtitle" style="margin-bottom:12px;">Du plus récent au plus ancien. Chargée depuis <code>data/veille.json</code> — pour ajouter un article, il suffit de compléter ce fichier, sans toucher au HTML.</p>
+
+                        <div class="mfa-filters" role="group" aria-label="Filtrer les exemples par technique">
+                            <button type="button" class="mfa-filter-btn is-active" data-filter="all" aria-pressed="true">Toutes</button>
+                            <button type="button" class="mfa-filter-btn" data-filter="mfa-fatigue" aria-pressed="false">MFA fatigue</button>
+                            <button type="button" class="mfa-filter-btn" data-filter="sim-swapping" aria-pressed="false">SIM swapping</button>
+                            <button type="button" class="mfa-filter-btn" data-filter="cookies" aria-pressed="false">Vol de cookies</button>
+                            <button type="button" class="mfa-filter-btn" data-filter="helpdesk" aria-pressed="false">Help desk</button>
+                            <button type="button" class="mfa-filter-btn" data-filter="protection" aria-pressed="false">Protection</button>
+                        </div>
+
+                        <ol class="mfa-timeline" id="mfa-timeline" aria-live="polite">
+                            <!-- généré dynamiquement par assets/js/main.js depuis data/veille.json -->
+                        </ol>
+
+                        <noscript>
+                            <p>La frise interactive nécessite JavaScript. Voici les exemples en texte simple :</p>
+                            <ul class="mfa-sources">
+                                <li>Septembre 2026 — Gendarmerie de la Somme (SIM swapping) : <a href="https://www.letribunaldunet.fr/hightech/sim-swapping-arnaque-carte-sim-vide-comptes-bancaires.html">Le Tribunal du Net</a>, <a href="https://selectra.info/telecom/actualites/marche/plus-de-reseau-soudain-vol-numero-sim-swap">Selectra</a></li>
+                                <li>Avril 2026 — Google Chrome 146, DBSC (protection) : <a href="https://blog.google/security/protecting-cookies-with-device-bound-session-credentials/">Google Security Blog</a></li>
+                                <li>Février 2026 — Infostealers (vol de cookies) : <a href="https://www.threathunter.ai/blog/infostealers-biggest-story-cybersecurity-mfa-wont-save-you">ThreatHunter.ai</a></li>
+                                <li>Juillet 2025 — Société Générale (SIM swapping) : <a href="https://www.bitdefender.com/fr-fr/blog/hotforsecurity/50-clients-dune-banque-francaise-touches-par-du-sim-swapping">Bitdefender</a></li>
+                                <li>Avril 2025 — Marks &amp; Spencer / Co-op / Harrods (help desk) : <a href="https://www.bleepingcomputer.com/news/security/3-key-takeaways-from-the-scattered-spider-attacks-on-insurance-firms/">BleepingComputer</a>, <a href="https://www.manageengine.com/log-management/cyber-security/marks-and-spencer-ransomware-retail-sector-cybersecurity.html">ManageEngine</a></li>
+                                <li>Septembre 2023 — MGM Resorts (help desk) : <a href="https://www.infosecurity-magazine.com/blogs/scattered-spider-retailers/">Infosecurity Magazine</a></li>
+                                <li>Septembre 2022 — Uber (MFA fatigue) : <a href="https://www.itsecurityguru.org/2025/02/25/understanding-mfa-fatigue-why-cybercriminals-are-exploiting-human-behaviour/">IT Security Guru</a></li>
+                                <li>Juin 2021 — Electronic Arts (vol de cookies) : <a href="https://www.sophos.com/fr-fr/blog/cookie-stealing-the-new-perimeter-bypass">Sophos</a></li>
+                            </ul>
+                        </noscript>
+                    </section>
+
+                    <!-- ============================================================
+                         6. SE PROTÉGER
+                         ============================================================ -->
+                    <section id="protection" class="mfa-section mfa-fade">
+                        <h2 class="section-title">06 · Se protéger</h2>
+                        <p class="mfa-keyidea">On ne lâche pas la MFA : on choisit une MFA résistante au phishing (FIDO2, passkeys) et on protège ce qui l'entoure — la session, le support, l'utilisateur.</p>
+
+                        <div class="table-wrap">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Attaque</th>
+                                        <th scope="col">Parade principale</th>
+                                        <th scope="col">Mesures complémentaires</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>MFA fatigue</td>
+                                        <td>Number matching</td>
+                                        <td>Limiter les notifications, afficher le lieu de connexion, alerter après plusieurs refus</td>
+                                    </tr>
+                                    <tr>
+                                        <td>SIM swapping</td>
+                                        <td>Ne plus utiliser le SMS comme second facteur (recommandation R8 de l'ANSSI)</td>
+                                        <td>Application ou clé FIDO2, code secret opérateur, réagir dès la perte de réseau</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Vol de cookies</td>
+                                        <td>Session liée à l'appareil (DBSC, Chrome 146), accès conditionnel « appareil conforme »</td>
+                                        <td>Sessions courtes, révocation après incident, EDR, interdire les logiciels piratés</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Help desk</td>
+                                        <td>Vérification d'identité stricte avant tout reset de MFA</td>
+                                        <td>Rappel sur un numéro connu, validation du manager, alerte sur les resets de comptes à privilèges</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="grid" style="margin-top:20px;">
+                            <div class="card">
+                                <h2>Technique</h2>
+                                <ul>
+                                    <li>Passkeys, clés FIDO2, Windows Hello for Business.</li>
+                                    <li>Number matching et accès conditionnel dans Microsoft Entra ID.</li>
+                                    <li>Supervision des journaux : refus MFA multiples, pays inhabituel, « voyage impossible ».</li>
+                                </ul>
+                            </div>
+                            <div class="card">
+                                <h2>Organisationnel</h2>
+                                <ul>
+                                    <li>Procédure stricte pour le support informatique.</li>
+                                    <li>Révocation de toutes les sessions dans le plan de réponse à incident.</li>
+                                    <li>Moindre privilège et protection renforcée des comptes administrateurs.</li>
+                                </ul>
+                            </div>
+                            <div class="card">
+                                <h2>Humain</h2>
+                                <ul>
+                                    <li>Une notification MFA non demandée se refuse et se signale, sans exception.</li>
+                                    <li>Connaître les signes d'un SIM swap en cours (perte brutale de réseau).</li>
+                                    <li>Le support ne demande jamais de valider une connexion ni de donner un code.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ============================================================
+                         7. LIEN AVEC LE BTS ET BILAN
+                         ============================================================ -->
+                    <section id="bts" class="mfa-section mfa-fade">
+                        <h2 class="section-title">07 · Synthèse, lien avec le BTS et bilan</h2>
+
+                        <div class="grid">
+                            <div class="card full">
+                                <h2>Ce que j'ai appris</h2>
+                                <p>La MFA reste la meilleure protection des accès, mais elle n'est plus suffisante seule. Les attaquants ne cherchent plus à casser le mot de passe : ils contournent le second facteur en jouant sur l'humain, sur l'opérateur téléphonique ou sur la session déjà ouverte.</p>
+                            </div>
+                            <div class="card">
+                                <h2>Évolutions constatées</h2>
+                                <ul>
+                                    <li><strong>2021–2022</strong> : premiers grands cas médiatisés (vol de cookie chez Electronic Arts, MFA fatigue chez Uber).</li>
+                                    <li><strong>2023–2025</strong> : les attaques visent le support informatique (MGM, Marks &amp; Spencer) et des complices chez les opérateurs ou les banques (SIM swapping).</li>
+                                    <li><strong>2025–2026</strong> : explosion des infostealers qui volent les cookies de session (+800 % d'identifiants volés au 1<sup>er</sup> semestre 2025).</li>
+                                    <li><strong>En réponse</strong> : number matching, passkeys / FIDO2, et sessions liées à l'appareil (DBSC dans Chrome 146, avril 2026).</li>
+                                </ul>
+                            </div>
+                            <div class="card">
+                                <h2>Acteurs</h2>
+                                <ul>
+                                    <li><strong>Attaquants</strong> : groupes d'ingénierie sociale (Scattered Spider, Lapsus$), vendeurs d'infostealers (Lumma, RedLine, Vidar).</li>
+                                    <li><strong>Autorités</strong> : ANSSI, CNIL, cybermalveillance.gouv.fr, CISA.</li>
+                                    <li><strong>Éditeurs</strong> : Microsoft (Entra ID), Google (Chrome, passkeys), Alliance FIDO.</li>
+                                    <li><strong>Opérateurs télécom et banques</strong>, en première ligne face au SIM swapping.</li>
+                                </ul>
+                            </div>
+                            <div class="card full">
+                                <h2>Enjeux</h2>
+                                <ul>
+                                    <li><strong>Technique</strong> : passer à une MFA résistante au phishing et protéger la session, pas seulement la connexion.</li>
+                                    <li><strong>Organisationnel</strong> : le support informatique devient une cible ; il faut des procédures strictes de vérification d'identité.</li>
+                                    <li><strong>Humain</strong> : former les utilisateurs à refuser une notification non demandée et à reconnaître un SIM swap.</li>
+                                    <li><strong>Financier</strong> : une seule faille peut coûter des centaines de millions (Marks &amp; Spencer).</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="grid" style="margin-top:16px;">
+                            <div class="card">
+                                <h2>Épreuve E7</h2>
+                                <p>Cette veille mobilise l'authentification et l'ingénierie sociale, selon la démarche attendue en E7 : menace &rarr; recommandation officielle (ANSSI, cybermalveillance.gouv.fr) &rarr; parades en prévention, détection et réaction.</p>
+                            </div>
+                            <div class="card">
+                                <h2>Compétences SISR</h2>
+                                <ul>
+                                    <li>MFA et accès conditionnel sur Active Directory / Microsoft Entra ID.</li>
+                                    <li>VPN avec authentification multifacteur.</li>
+                                    <li>Supervision des journaux d'authentification.</li>
+                                    <li>Sensibilisation des utilisateurs et rédaction de procédures.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="card full mfa-completion" style="margin-top:16px;">
+                            <h2>Bilan personnel</h2>
+                            <p>En alternance chez Upper-Link, j'utilise moi-même la MFA au quotidien pour accéder aux outils de l'entreprise, sans m'être vraiment demandé jusqu'ici comment elle pouvait être contournée. Cette veille m'a fait comprendre que le maillon faible n'est souvent pas la technique, mais l'humain et les procédures autour : une notification validée par lassitude ou un support trop conciliant suffit.</p>
+                            <p>Comme je passe du développement (SLAM) à l'infrastructure (SISR), elle m'a aussi donné de bons réflexes pour la suite : privilégier une MFA résistante au phishing, protéger les sessions et sensibiliser les utilisateurs. Aujourd'hui, je ne valide plus jamais une demande de connexion que je n'ai pas lancée moi-même.</p>
+                        </div>
+                    </section>
+
+                    <!-- ============================================================
+                         8. SOURCES
+                         ============================================================ -->
+                    <section id="sources" class="mfa-section mfa-fade">
+                        <h2 class="section-title">08 · Sources</h2>
+                        <p class="subtitle" style="margin-bottom:12px;">Guides institutionnels et articles cités dans la frise, avec leur date de publication et ma date de consultation.</p>
+                        <ul class="mfa-sources" id="mfa-sources-list">
+                            <!-- généré dynamiquement par assets/js/main.js -->
+                        </ul>
+                        <noscript>
+                            <ul class="mfa-sources">
+                                <li><a href="https://messervices.cyber.gouv.fr/guides/recommandations-relatives-lauthentification-multifacteur-et-aux-mots-de-passe">ANSSI — Recommandations relatives à l'authentification multifacteur et aux mots de passe</a> <span class="mfa-src-date">— publié le 8 oct. 2021 · consulté le 22 nov. 2026</span></li>
+                                <li><a href="https://esante.gouv.fr/faq/pourquoi-lotp-mail-ou-sms-nest-pas-recommande">esante.gouv.fr — Pourquoi l'OTP mail ou SMS n'est pas recommandé</a> <span class="mfa-src-date">— mis à jour le 29 juil. 2026 · consulté le 22 nov. 2026</span></li>
+                                <li><a href="https://www.proofpoint.com/fr/threat-reference/mfa-fatigue-attack">Proofpoint — MFA Fatigue Attack</a> <span class="mfa-src-date">— publié le 18 févr. 2026 · consulté le 22 nov. 2026</span></li>
+                                <li><a href="https://www.varonis.com/blog/cookie-bite">Varonis — Cookie Bite</a> <span class="mfa-src-date">— publié le 19 mai 2025 · consulté le 22 nov. 2026</span></li>
+                                <li><a href="https://www.letribunaldunet.fr/hightech/sim-swapping-arnaque-carte-sim-vide-comptes-bancaires.html">Le Tribunal du Net — SIM swapping</a> <span class="mfa-src-date">— publié le 6 sept. 2026 · consulté le 22 nov. 2026</span></li>
+                                <li><a href="https://selectra.info/telecom/actualites/marche/plus-de-reseau-soudain-vol-numero-sim-swap">Selectra — SIM swap</a> <span class="mfa-src-date">— publié le 9 nov. 2026 · consulté le 22 nov. 2026</span></li>
+                                <li><a href="https://blog.google/security/protecting-cookies-with-device-bound-session-credentials/">Google Security Blog — DBSC</a> <span class="mfa-src-date">— publié le 9 avr. 2026 · consulté le 22 nov. 2026</span></li>
+                                <li><a href="https://www.threathunter.ai/blog/infostealers-biggest-story-cybersecurity-mfa-wont-save-you">ThreatHunter.ai — Infostealers</a> <span class="mfa-src-date">— publié le 16 févr. 2026 · consulté le 22 nov. 2026</span></li>
+                                <li><a href="https://www.bitdefender.com/fr-fr/blog/hotforsecurity/50-clients-dune-banque-francaise-touches-par-du-sim-swapping">Bitdefender — Société Générale</a> <span class="mfa-src-date">— publié le 1 juil. 2025 · consulté le 22 nov. 2026</span></li>
+                                <li><a href="https://www.bleepingcomputer.com/news/security/3-key-takeaways-from-the-scattered-spider-attacks-on-insurance-firms/">BleepingComputer — Scattered Spider</a> <span class="mfa-src-date">— publié le 26 juin 2025 · consulté le 22 nov. 2026</span></li>
+                                <li><a href="https://www.manageengine.com/log-management/cyber-security/marks-and-spencer-ransomware-retail-sector-cybersecurity.html">ManageEngine — M&amp;S</a> <span class="mfa-src-date">— publié le 25 avr. 2025 · consulté le 22 nov. 2026</span></li>
+                                <li><a href="https://www.infosecurity-magazine.com/blogs/scattered-spider-retailers/">Infosecurity Magazine — MGM Resorts</a> <span class="mfa-src-date">— publié le 15 sept. 2026 · consulté le 22 nov. 2026</span></li>
+                                <li><a href="https://www.itsecurityguru.org/2025/02/25/understanding-mfa-fatigue-why-cybercriminals-are-exploiting-human-behaviour/">IT Security Guru — Uber</a> <span class="mfa-src-date">— publié le 25 févr. 2025 · consulté le 22 nov. 2026</span></li>
+                                <li><a href="https://www.sophos.com/fr-fr/blog/cookie-stealing-the-new-perimeter-bypass">Sophos — Electronic Arts</a> <span class="mfa-src-date">— publié le 14 sept. 2022 · consulté le 22 nov. 2026</span></li>
+                            </ul>
+                        </noscript>
+                    </section>
+
+                    <a href="index.html" class="back-link">&larr; Retour à l'accueil</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Données de veille : fallback hors-ligne d'abord (file://), puis tentative
+         de fetch('data/veille.json') dans main.js pour rester à jour sans
+         republier le site si le fichier est modifié sur le serveur. -->
+    <script src="data/veille-data.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

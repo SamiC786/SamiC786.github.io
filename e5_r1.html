@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E5 — Réalisation 1 — Line Watcher Backend Python</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li class="has-sub">
+                    <a href="presentation.html">Profil</a>
+                    <ul>
+                        <li><a href="presentation.html">Présentation</a></li>
+                        <li><a href="loisir.html">Loisirs</a></li>
+                    </ul>
+                </li>
+                <li class="has-sub">
+                    <a href="experience_pro.html">Parcours</a>
+                    <ul>
+                        <li><a href="experience_pro.html">Expériences professionnelles</a></li>
+                        <li><a href="rapport_stage.html">Rapports de stage</a></li>
+                        <li><a href="realisations.html">Toutes mes réalisations</a></li>
+                    </ul>
+                </li>
+                <li class="has-sub">
+                    <a href="diplome.html">Formation</a>
+                    <ul>
+                        <li><a href="diplome.html">Diplômes</a></li>
+                        <li><a href="competences.html">Compétences</a></li>
+                        <li><a href="scolarite.html">Scolarité</a></li>
+                    </ul>
+                </li>
+                <li class="has-sub">
+                    <a href="e5.html" aria-current="page">E5</a>
+                    <ul>
+                        <li><a href="e5_r1.html" aria-current="page">Réalisation 1 — Backend Python</a></li>
+                        <li><a href="e5_r2.html">Réalisation 2 — Frontend Angular</a></li>
+                        <li><a href="e5_r3.html">Réalisation 3 — Migration C#</a></li>
+                        <li><a href="e5_1.html">Présentation entreprise</a></li>
+                        <li><a href="e5_2.html">Tableau de synthèse</a></li>
+                        <li><a href="e5_3.html">Attestation</a></li>
+                    </ul>
+                </li>
+                <li><a href="e6.html">E6</a></li>
+                <li><a href="veille.html">Veille</a></li>
+                <li><a href="CV_Castignetti_Sami.pdf" target="_blank">CV</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="content">
+        <div class="breadcrumb"><a href="e5.html">E5</a> &rsaquo; Réalisation 1 — LW Backend Python</div>
+        <h1>Line Watcher — Backend Python</h1>
+        <span class="badge">E5 — Réalisation 1</span>
+        <div class="grid">
+            <div class="card full">
+                <h2>Contexte</h2>
+                <p>Line Watcher est une application développée chez Upper Link permettant aux collaborateurs de consulter les prochains passages du RER A. Le backend Python constitue le cœur du système : il interroge l'API IDFM (Île-de-France Mobilités) en temps réel et expose les données via une API REST consommée par le frontend Angular.</p>
+            </div>
+            <div class="card">
+                <h2>Fonctionnalités</h2>
+                <ul>
+                    <li>Appels à l'API IDFM pour récupérer les horaires en temps réel</li>
+                    <li>Traitement et formatage des données JSON</li>
+                    <li>Exposition d'une API REST pour le frontend</li>
+                    <li>Gestion des erreurs et des cas limites</li>
+                    <li>Cache des données pour limiter les appels API</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2>Technologies utilisées</h2>
+                <div style="margin-top:4px">
+                    <span class="tag">Python 3</span>
+                    <span class="tag">FastAPI</span>
+                    <span class="tag">API IDFM</span>
+                    <span class="tag">JSON</span>
+                    <span class="tag">HTTP</span>
+                    <span class="tag">Uvicorn</span>
+                </div>
+            </div>
+            <div class="card">
+                <h2>Architecture</h2>
+                <ul>
+                    <li>API REST exposée avec FastAPI</li>
+                    <li>Module de récupération des données RATP/IDFM</li>
+                    <li>Module de traitement et parsing des réponses</li>
+                    <li>Gestion des routes et endpoints</li>
+                    <li>Déploiement avec Uvicorn</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2>Endpoints principaux</h2>
+                <ul>
+                    <li><strong>GET /horaires</strong> — Prochains passages RER A</li>
+                    <li><strong>GET /station/{id}</strong> — Horaires par station</li>
+                    <li><strong>GET /status</strong> — État du service</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2>Compétences acquises</h2>
+                <ul>
+                    <li>Développement d'API REST en Python</li>
+                    <li>Consommation d'API tierces (IDFM)</li>
+                    <li>Gestion des données JSON</li>
+                    <li>Notions de cache et performance</li>
+                    <li>Documentation d'une API</li>
+                </ul>
+            </div>
+        </div>
+        <div class="card full" style="margin-top: 16px;">
+            <h2>Documentation API — Swagger UI</h2>
+            <img src="lw-api-swagger.png" alt="Line Watcher API — Swagger UI" style="width: 100%; border-radius: 10px; margin-top: 10px; display: block;">
+        </div>
+
+        <a href="e5.html" class="back-link">&larr; Retour à E5</a>
+    </div>
+</body>
+</html>

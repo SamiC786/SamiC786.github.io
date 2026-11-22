@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réalisation — Mise en place d'un système DHCP</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li class="has-sub">
+                    <a href="presentation.html">Profil</a>
+                    <ul>
+                        <li><a href="presentation.html">Présentation</a></li>
+                        <li><a href="loisir.html">Loisirs</a></li>
+                    </ul>
+                </li>
+                <li class="has-sub">
+                    <a href="experience_pro.html" aria-current="page">Parcours</a>
+                    <ul>
+                        <li><a href="experience_pro.html">Expériences professionnelles</a></li>
+                        <li><a href="rapport_stage.html">Rapports de stage</a></li>
+                        <li><a href="realisations.html">Toutes mes réalisations</a></li>
+                    </ul>
+                </li>
+                <li class="has-sub">
+                    <a href="diplome.html">Formation</a>
+                    <ul>
+                        <li><a href="diplome.html">Diplômes</a></li>
+                        <li><a href="competences.html">Compétences</a></li>
+                        <li><a href="scolarite.html">Scolarité</a></li>
+                    </ul>
+                </li>
+                <li class="has-sub">
+                    <a href="e5.html">E5</a>
+                    <ul>
+                        <li><a href="e5_r1.html">Réalisation 1 — Backend Python</a></li>
+                        <li><a href="e5_r2.html">Réalisation 2 — Frontend Angular</a></li>
+                        <li><a href="e5_r3.html">Réalisation 3 — Migration C#</a></li>
+                        <li><a href="e5_1.html">Présentation entreprise</a></li>
+                        <li><a href="e5_2.html">Tableau de synthèse</a></li>
+                        <li><a href="e5_3.html">Attestation</a></li>
+                    </ul>
+                </li>
+                <li><a href="e6.html">E6</a></li>
+                <li><a href="veille.html">Veille</a></li>
+                <li><a href="CV_Castignetti_Sami.pdf" target="_blank">CV</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="content">
+        <div class="breadcrumb"><a href="realisations.html">Réalisations</a> &rsaquo; <a href="realisations.html#formation">Formation</a> &rsaquo; Système DHCP</div>
+        <h1>Mise en place d'un système DHCP</h1>
+        <span class="badge">Réalisation en formation — F03</span>
+
+        <div class="grid">
+            <div class="card full">
+                <h2>Contexte</h2>
+                <p>Dans le cadre des travaux pratiques réseau du BTS SIO, j'ai mis en place un serveur DHCP (Dynamic Host Configuration Protocol) permettant l'attribution automatique d'adresses IP aux postes d'un réseau local. Ce protocole est fondamental dans l'administration des infrastructures réseau d'entreprise.</p>
+            </div>
+
+            <div class="card">
+                <h2>Objectifs</h2>
+                <ul>
+                    <li>Comprendre le fonctionnement du protocole DHCP</li>
+                    <li>Installer et configurer un serveur DHCP</li>
+                    <li>Définir une plage d'adresses IP (pool)</li>
+                    <li>Configurer les options réseau (passerelle, DNS)</li>
+                    <li>Tester l'attribution automatique depuis un client</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>Technologies utilisées</h2>
+                <div style="margin-top:4px">
+                    <span class="tag">DHCP</span>
+                    <span class="tag">Réseau LAN</span>
+                    <span class="tag">TCP/IP</span>
+                    <span class="tag">Linux / Windows Server</span>
+                </div>
+                <p style="margin-top:12px">Configuration réalisée en environnement de laboratoire avec machines virtuelles.</p>
+            </div>
+
+            <div class="card">
+                <h2>Notions abordées</h2>
+                <ul>
+                    <li>Modèle client/serveur DHCP (DORA : Discover, Offer, Request, Acknowledge)</li>
+                    <li>Plages d'adresses et exclusions</li>
+                    <li>Durée de bail (lease time)</li>
+                    <li>Réservations d'adresses par adresse MAC</li>
+                    <li>Options DHCP : passerelle par défaut, serveur DNS</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>Réalisations</h2>
+                <ul>
+                    <li>Installation et configuration du service DHCP</li>
+                    <li>Définition d'un pool d'adresses IP dans le sous-réseau</li>
+                    <li>Configuration des options réseau (gateway, DNS)</li>
+                    <li>Tests d'attribution IP depuis plusieurs clients</li>
+                    <li>Vérification des baux avec les outils système</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>Compétences acquises</h2>
+                <ul>
+                    <li>Administration de services réseau de base</li>
+                    <li>Compréhension du protocole DHCP et de TCP/IP</li>
+                    <li>Dépannage de problèmes d'attribution IP</li>
+                    <li>Gestion d'une infrastructure réseau locale</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card full" style="margin-top: 16px;">
+            <h2>Topologie réseau — Cisco Packet Tracer</h2>
+            <img src="dhcp-topologie.png" alt="Topologie réseau DHCP / VLAN" style="width: 100%; border-radius: 10px; margin-top: 10px; display: block;">
+        </div>
+
+        <a href="realisations.html#formation" class="back-link">&larr; Retour aux réalisations</a>
+    </div>
+</body>
+</html>
