@@ -1,0 +1,167 @@
+/*
+ * Secours hors-ligne pour la page de veille (section "La MFA et ses contournements").
+ *
+ * Quand la page est ouverte directement depuis le disque (protocole file://),
+ * le navigateur bloque fetch() sur les fichiers locaux pour des raisons de
+ * sécurité : data/veille.json ne peut alors pas être chargé.
+ *
+ * Ce fichier contient donc exactement les mêmes données, sous forme d'objet
+ * JavaScript global (window.VEILLE_DATA). assets/js/main.js essaie d'abord
+ * de charger data/veille.json via fetch ; s'il échoue (file://, erreur réseau),
+ * il retombe automatiquement sur window.VEILLE_DATA.
+ *
+ * IMPORTANT : si tu ajoutes un article dans data/veille.json, pense à faire
+ * la même modification ici pour que le mode hors-ligne reste à jour.
+ */
+
+window.VEILLE_DATA = {
+  "lastUpdated": "2026-11-22",
+  "articles": [
+    {
+      "date": "Septembre 2026",
+      "technique": "sim-swapping",
+      "techniqueLabel": "SIM swapping",
+      "title": "La Gendarmerie de la Somme alerte sur la hausse des arnaques au SIM swapping",
+      "summary": "La gendarmerie signale une recrudescence des arnaques par SIM swapping. Selon Orange, l'arnaque ne prend que 5 à 10 minutes et un compte bancaire peut être vidé en moins de 30 minutes une fois le numéro détourné.",
+      "links": [
+        {
+          "label": "Le Tribunal du Net",
+          "url": "https://www.letribunaldunet.fr/hightech/sim-swapping-arnaque-carte-sim-vide-comptes-bancaires.html",
+          "published": "2026-09-06"
+        },
+        {
+          "label": "Selectra",
+          "url": "https://selectra.info/telecom/actualites/marche/plus-de-reseau-soudain-vol-numero-sim-swap",
+          "published": "2026-11-09"
+        }
+      ]
+    },
+    {
+      "date": "Avril 2026",
+      "technique": "protection",
+      "techniqueLabel": "Protection",
+      "title": "Google déploie Device Bound Session Credentials (DBSC) dans Chrome 146",
+      "summary": "Chrome 146 introduit DBSC : les cookies de session sont liés à l'appareil via une puce TPM, ce qui les rend inutilisables s'ils sont volés puis réutilisés depuis une autre machine.",
+      "links": [
+        {
+          "label": "Google Security Blog",
+          "url": "https://blog.google/security/protecting-cookies-with-device-bound-session-credentials/",
+          "published": "2026-04-09"
+        }
+      ]
+    },
+    {
+      "date": "Février 2026",
+      "technique": "cookies",
+      "techniqueLabel": "Vol de cookies",
+      "title": "Explosion du nombre d'identifiants volés par les infostealers",
+      "summary": "1,8 milliard d'identifiants ont été volés par des infostealers au premier semestre 2025 (+800 %). Sur 18,7 millions de journaux (logs) analysés, 1,17 million contenaient à la fois des identifiants professionnels et des cookies de session actifs.",
+      "links": [
+        {
+          "label": "ThreatHunter.ai",
+          "url": "https://www.threathunter.ai/blog/infostealers-biggest-story-cybersecurity-mfa-wont-save-you",
+          "published": "2026-02-16"
+        }
+      ]
+    },
+    {
+      "date": "Juillet 2025",
+      "technique": "sim-swapping",
+      "techniqueLabel": "SIM swapping",
+      "title": "Société Générale : un employé complice d'un réseau de SIM swapping",
+      "summary": "Un employé transmettait des informations sur des clients à un réseau organisé de SIM swapping. Une cinquantaine de clients de la banque ont été touchés.",
+      "links": [
+        {
+          "label": "Bitdefender / HotForSecurity",
+          "url": "https://www.bitdefender.com/fr-fr/blog/hotforsecurity/50-clients-dune-banque-francaise-touches-par-du-sim-swapping",
+          "published": "2025-07-01"
+        }
+      ]
+    },
+    {
+      "date": "Avril 2025",
+      "technique": "helpdesk",
+      "techniqueLabel": "Attaque du help desk",
+      "title": "Marks & Spencer, Co-op et Harrods ciblés par le groupe Scattered Spider",
+      "summary": "En se faisant passer pour des salariés, les attaquants obtiennent du support un reset du mot de passe et de la MFA sur un nouvel appareil. M&S a dû couper ses commandes en ligne ; la perte est estimée à 300 millions de livres.",
+      "links": [
+        {
+          "label": "BleepingComputer",
+          "url": "https://www.bleepingcomputer.com/news/security/3-key-takeaways-from-the-scattered-spider-attacks-on-insurance-firms/",
+          "published": "2025-06-26"
+        },
+        {
+          "label": "ManageEngine",
+          "url": "https://www.manageengine.com/log-management/cyber-security/marks-and-spencer-ransomware-retail-sector-cybersecurity.html",
+          "published": "2025-04-25"
+        }
+      ]
+    },
+    {
+      "date": "Septembre 2023",
+      "technique": "helpdesk",
+      "techniqueLabel": "Attaque du help desk",
+      "title": "MGM Resorts : un salarié repéré sur LinkedIn pour usurper son identité auprès du support",
+      "summary": "Les attaquants identifient un salarié sur LinkedIn puis appellent le support informatique en se faisant passer pour lui afin d'obtenir un reset d'accès.",
+      "links": [
+        {
+          "label": "Infosecurity Magazine",
+          "url": "https://www.infosecurity-magazine.com/blogs/scattered-spider-retailers/",
+          "published": "2026-09-15"
+        }
+      ]
+    },
+    {
+      "date": "Septembre 2022",
+      "technique": "mfa-fatigue",
+      "techniqueLabel": "MFA fatigue",
+      "title": "Uber : un prestataire valide une notification après un bombardement de demandes",
+      "summary": "Un prestataire externe, bombardé de dizaines de notifications MFA, finit par en approuver une par lassitude, ce qui permet à l'attaquant de se connecter.",
+      "links": [
+        {
+          "label": "IT Security Guru",
+          "url": "https://www.itsecurityguru.org/2025/02/25/understanding-mfa-fatigue-why-cybercriminals-are-exploiting-human-behaviour/",
+          "published": "2025-02-25"
+        }
+      ]
+    },
+    {
+      "date": "Juin 2021",
+      "technique": "cookies",
+      "techniqueLabel": "Vol de cookies",
+      "title": "Electronic Arts : un cookie de session acheté donne accès au Slack interne",
+      "summary": "Un cookie de session volé puis revendu sur un marché clandestin permet aux attaquants d'accéder au Slack interne de l'entreprise, sans mot de passe ni MFA.",
+      "links": [
+        {
+          "label": "Sophos",
+          "url": "https://www.sophos.com/fr-fr/blog/cookie-stealing-the-new-perimeter-bypass",
+          "published": "2022-09-14"
+        }
+      ]
+    }
+  ],
+  "institutionalSources": [
+    {
+      "label": "ANSSI — Recommandations relatives à l'authentification multifacteur et aux mots de passe",
+      "url": "https://messervices.cyber.gouv.fr/guides/recommandations-relatives-lauthentification-multifacteur-et-aux-mots-de-passe",
+      "published": "2021-10-08"
+    },
+    {
+      "label": "esante.gouv.fr — Pourquoi l'OTP mail ou SMS n'est pas recommandé",
+      "url": "https://esante.gouv.fr/faq/pourquoi-lotp-mail-ou-sms-nest-pas-recommande",
+      "published": "2026-07-29",
+      "dateKind": "mis à jour"
+    },
+    {
+      "label": "Proofpoint — MFA Fatigue Attack",
+      "url": "https://www.proofpoint.com/fr/threat-reference/mfa-fatigue-attack",
+      "published": "2026-02-18"
+    },
+    {
+      "label": "Varonis — Cookie Bite",
+      "url": "https://www.varonis.com/blog/cookie-bite",
+      "published": "2025-05-19"
+    }
+  ],
+  "consulted": "2026-11-22"
+};
